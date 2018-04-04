@@ -1,0 +1,13 @@
+<p-dataTable [value]="taskList" (onRowClick)="clickedrow($event)">
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="status" header="Status"></p-column>
+    <p-column field="description" header="Description"></p-column>
+    <p-column>
+        <ng-template let-car="rowData" pTemplate="body">
+            <button type="button" class="btn btn-danger" pButton (click)="deleterow(car)">Delete</button>
+            <button type="button" class="btn btn-primary" pButton (click)="editrow(car)">Edit</button>
+        </ng-template>
+    </p-column>
+</p-dataTable>
+
+<app-modal [display]='displayModal' [oneditclicked]='edit' [data]='taskdetail' (closed)="closedDialog()" (saveclick)="getTasks()" (clickedDeleteButton)="deleterow($event)"></app-modal>

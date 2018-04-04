@@ -1,0 +1,27 @@
+<p-dialog header="Task Information" [(visible)]="display" class="ui-dialog" (onHide)="closedModel()" [width]="600">
+  <table *ngIf="data" class="table table-user-information">
+    <tbody>
+      <tr>
+        <td>Name:</td>
+        <td *ngIf="!oneditclicked">{{data.name}}</td>
+        <td *ngIf="oneditclicked"><input type="text" [ngModel]="data.name" (ngModelChange)="changedModel($event,'name')" class="form-control"></td>
+      </tr>
+      <tr>
+        <td>Status:</td>
+        <td *ngIf="!oneditclicked">{{data.status}}</td>
+        <td *ngIf="oneditclicked"><p-dropdown [autoWidth]="false" [style]="{'width':'100%','background':'white'}" [options]="statuses" appendTo="body" [ngModel]="data.status" (ngModelChange)="changedModel($event,'status')"></p-dropdown></td>
+      </tr>
+       <tr>
+        <td>Description:</td>
+        <td *ngIf="!oneditclicked">{{data.description}}</td>
+        <td *ngIf="oneditclicked"><input type="text" [ngModel]="data.description" (ngModelChange)="changedModel($event,'description')" class="form-control"></td>
+      </tr>
+       
+    </tbody>
+  </table>
+   <p-footer>
+        <button *ngIf="!oneditclicked" (click)="editTask()" type="button" class="btn btn-primary" pButton>Edit</button>
+        <button *ngIf="oneditclicked" (click)="saveTask()" type="button" class="btn btn-primary" pButton>Save</button>
+        <button (click)="deleteTask()" type="button" class="btn btn-danger" pButton class="btn btn-danger">Delete</button>
+    </p-footer>
+</p-dialog>
